@@ -16,4 +16,4 @@ Navigate back to the main `Workout` directory and run `ng serve` for a dev serve
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-To get more help on the Python Flask package check out the [Flask web development] (https://flask.palletsprojects.com/en/2.1.x/) page.
+To get more help on the Python Flask package check out the [Flask web development](https://flask.palletsprojects.com/en/2.1.x/) page.
