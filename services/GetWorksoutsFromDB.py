@@ -35,7 +35,7 @@ def getDistinct(colName, tableName):
 def queryDB(tableName):
     cur, conn = getCurConn()
     try:
-        cur.execute('''select "workout_date", "workout_type", "weight", "reps", "num_sets" from ''' + tableName)
+        cur.execute('''select "workout_id", "workout_date", "workout_type", "weight", "reps", "num_sets", "resistance_type" from ''' + tableName + ' order by 2 desc')
         result = cur.fetchall()
         return result
     except (Exception, psycopg2.DatabaseError) as error:
@@ -48,7 +48,7 @@ def queryDB(tableName):
 def queryDBWhere(tableName, colName, workoutName):
     cur, conn = getCurConn()
     try:
-        cur.execute("select * from " + tableName + " where \"" + colName + "\"=%s", [workoutName])
+        cur.execute("select * from " + tableName + " where \"" + colName + "\"=%s order by 2", [workoutName])
         colnames = [desc[0] for desc in cur.description]
         result = cur.fetchall()
         listOfResults = []
@@ -65,3 +65,25 @@ def queryDBWhere(tableName, colName, workoutName):
         cur.execute("ROLLBACK")
         conn.commit()
         return "Error"
+
+
+def queryDBWhereMultiple(queryStatement, listOfVals):
+  cur, conn = getCurConn()
+  try:
+    cur.execute(queryStatement, listOfVals)
+    colnames = [desc[0] for desc in cur.description]
+    result = cur.fetchall()
+    listOfResults = []
+    for i in result:
+      rowList = []
+      for j in range(len(colnames)):
+        rowList.append(i[j])
+      listOfResults.append(rowList)
+    return listOfResults
+
+
+  except (Exception, psycopg2.DatabaseError) as error:
+    logger.error(error)
+    cur.execute("ROLLBACK")
+    conn.commit()
+    return "Error"

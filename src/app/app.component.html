@@ -1,9 +1,21 @@
 <h1>
   Welcome to {{ title }}
 </h1>
-<h2>By: {{author}}</h2>
+<h4>By: {{author}}</h4>
+
+<h2></h2>
 
 <nav>
-  <a routerLink="/body-part">Workout by Body Part</a>
+  <a routerLink="/workout-history" routerLinkActive="active" ariaCurrentWhenActive="page">Workout History</a>
+</nav>
+<router-outlet></router-outlet>
+
+<nav>
+  <a routerLink="/body-part" routerLinkActive="active" ariaCurrentWhenActive="page">Workout by Body Part</a>
+</nav>
+<router-outlet></router-outlet>
+
+<nav>
+  <a routerLink="/resistance" routerLinkActive="active" ariaCurrentWhenActive="page">Workout by Resistance</a>
 </nav>
 <router-outlet></router-outlet>

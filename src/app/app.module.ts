@@ -7,11 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { BodyPartsComponent } from './body-parts/body-parts.component';
+import { ResistanceComponent } from './resistance/resistance.component';
+import { WorkouthistoryComponent } from './workouthistory/workouthistory.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BodyPartsComponent
+    BodyPartsComponent,
+    ResistanceComponent,
+    WorkouthistoryComponent
   ],
   imports: [
     BrowserModule,

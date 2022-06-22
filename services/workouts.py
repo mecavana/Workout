@@ -31,16 +31,41 @@ def getMyWorkoutsByName():
     logger.info(str(uniqueresults))
     logger.info("/workouts API was called - getting workouts now")
     results = queryDBWhere("workouts", "workout_type", workoutName)
-
+    formattedResults = []
     for i in results:
-        print(str(type(i[1])))
+        singleResult = []
+        date = i[1].strftime("%m/%d/%Y")
+        singleResult.append(date)
+        singleResult.append(i[2])
+        singleResult.append(i[3])
+        singleResult.append(i[4])
+        singleResult.append(i[5])
+        singleResult.append(i[6])
+        formattedResults.append(singleResult)
 
-    return str(results)
+    return jsonify(formattedResults)
 
-@app.route('/getMyWorkoutsByDate', methods=["GET"])
-def getMyWorkoutsByDate():
-    pass
-#get MY workout by date - need to properly format date
+@app.route('/getMyWorkoutsByResistanceAndPart', methods=["GET"])
+def getMyWorkoutsByResistanceAndPart():
+    logger.info("/getMyWorkoutsByResistanceAndPart API was called - getting workouts now")
+    workoutName = request.args.get('Workout Name')
+    resistance = request.args.get('Resistance')
+    queryStatement = '''select * from workouts where "workout_type"=%s and "resistance_type"=%s'''
+    listOfVals = [workoutName, resistance]
+    result = queryDBWhereMultiple(queryStatement, listOfVals)
+    print(result)
+    formattedResults = []
+    for i in result:
+        singleResult = []
+        date = i[1].strftime("%m/%d/%Y")
+        singleResult.append(date)
+        singleResult.append(i[2])
+        singleResult.append(i[3])
+        singleResult.append(i[4])
+        singleResult.append(i[5])
+        singleResult.append(i[6])
+        formattedResults.append(singleResult)
+    return jsonify(formattedResults)
 
 
 @app.route('/getAllUniqueWorkouts', methods=["GET"])
@@ -55,7 +80,19 @@ def getAllWorkouts():
     results = queryDB("workouts")
     logger.info(str(results))
     logger.info("/getAllWorkouts API was called - getting workouts now")
-    return jsonify(results)
+    formattedResults = []
+    for i in results:
+        singleResult = []
+        print(i)
+        date = i[1].strftime("%m/%d/%Y")
+        singleResult.append(date)
+        singleResult.append(i[2])
+        singleResult.append(i[3])
+        singleResult.append(i[4])
+        singleResult.append(i[5])
+        singleResult.append(i[6])
+        formattedResults.append(singleResult)
+    return jsonify(formattedResults)
 
 
 @app.route('/getAllWorkoutsByBodyPart', methods=["GET"])
@@ -68,6 +105,18 @@ def getAllWorkoutsByBodyPart():
     for i in results:
         justParts.append(i[1])
     return jsonify(justParts)
+
+
+@app.route('/getAllWorkoutsByResistance', methods=["GET"])
+def getAllWorkoutsByResistance():
+    resistance = request.args.get('Resistance')
+    logger.info(str(resistance))
+    logger.info("/getAllWorkoutsByResistance API was called - getting workouts now")
+    results = queryDBWhere("workout_resistance", "resistance_type", resistance)
+    workout = []
+    for i in results:
+        workout.append(i[1])
+    return jsonify(workout)
 
 
 @app.route('/addNewWorkout', methods=["POST"])
