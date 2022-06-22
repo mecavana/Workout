@@ -32,6 +32,18 @@ def getDistinct(colName, tableName):
         conn.commit()
         return "Error"
 
+def queryDB(tableName):
+    cur, conn = getCurConn()
+    try:
+        cur.execute('''select "workout_date", "workout_type", "weight", "reps", "num_sets" from ''' + tableName)
+        result = cur.fetchall()
+        return result
+    except (Exception, psycopg2.DatabaseError) as error:
+        logger.error(error)
+        cur.execute("ROLLBACK")
+        conn.commit()
+        return "Error"
+
 
 def queryDBWhere(tableName, colName, workoutName):
     cur, conn = getCurConn()

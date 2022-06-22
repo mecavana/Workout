@@ -1,0 +1,17 @@
+<h2>  Body Parts:</h2>
+
+
+<ul class="body-parts">
+  <li *ngFor="let bodyPart of bodyParts"
+      (click)="showWorkoutType(bodyPart)">
+    <span>{{ bodyPart }} </span>
+  </li>
+</ul>
+
+
+
+<h2 *ngIf="selectedBodyPart"> Workouts for {{selectedBodyPart}}:</h2>
+<ul class="body-parts">
+  <li *ngFor="let workout of returnWorkoutsByBodyPart"> {{ workout}} </li>
+</ul>
+

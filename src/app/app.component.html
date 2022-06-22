@@ -1,34 +1,9 @@
 <h1>
   Welcome to {{ title }}
 </h1>
+<h2>By: {{author}}</h2>
 
-
-<h2>  Body Parts:</h2>
-<ul class="AppComponent">
-  <li *ngFor="let bodyPart of bodyParts"
-      (click)="showWorkoutType(bodyPart)">
-    <span>{{ bodyPart.body }} </span>
-    <span>{{ bodyPart.type }}</span>
-  </li>
-
-</ul>
-
-
-
-<h2 *ngIf="clickedOnPart"> Workouts:</h2>
-
-<ul class="AppComponent">
-  <li *ngFor="let clicked of clickedOnPart"
-      (click)="showWorkout(clicked)">
-    <span>{{ clicked }} </span>
-  </li>
-</ul>
-
-
-<h2 *ngIf="exercise"> History:</h2>
-<ul class="AppComponent">
-  <li
-    *ngIf="exercise">
-    <span>{{ exercise }} </span>
-  </li>
-</ul>
+<nav>
+  <a routerLink="/body-part">Workout by Body Part</a>
+</nav>
+<router-outlet></router-outlet>
