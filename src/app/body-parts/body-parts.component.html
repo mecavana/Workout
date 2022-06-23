@@ -1,21 +1,23 @@
-<h2>  Body Parts:</h2>
+<h2>  Choose A Body Part:</h2>
+
+<select #cricket (change)="updateBodyPart($event)">
+  <option value="default">----</option>
+  <option *ngFor="let bodyPart of bodyParts" [value]="bodyPart"
+          (click)="updateBodyPart(bodyPart)">
+    {{bodyPart}}
+  </option>
+</select>
 
 
-<ul class="body-parts">
-  <li *ngFor="let bodyPart of bodyParts"
-      (click)="showWorkoutType(bodyPart)">
-    <span>{{ bodyPart }} </span>
-  </li>
-</ul>
+<h2 *ngIf="selected"> Workouts for {{selected}}:</h2>
+<select *ngIf="selected" #cricket (change)="getHistoryByBodyPart($event)">
+  <option value="default" *ngIf="selected">----</option>
+  <option *ngFor="let workout of returnWorkoutsByBodyPart" [value]="workout"
+          (click)="getHistoryByBodyPart(workout)">
+    {{workout}}
+  </option>
+</select>
 
-
-
-<h2 *ngIf="selectedBodyPart"> Workouts for {{selectedBodyPart}}:</h2>
-<ul class="body-parts">
-  <li *ngFor="let workout of returnWorkoutsByBodyPart"
-      (click)="getHistoryByBodyPart(workout)">
-  {{ workout}} </li>
-</ul>
 
 
 <h2 *ngIf="selectedWorkout"> Workout History for {{selectedWorkout}}:</h2>

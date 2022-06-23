@@ -1,0 +1,40 @@
+<h2>  Add Workout</h2>
+
+
+
+<form [formGroup]="addWorkoutForm" (ngSubmit)="onSubmit()">
+  <div class="addWorkout">
+    <label for="date">Workout Date: </label>
+    <input type="date" formControlName="date">
+  </div>
+
+  <div class="addWorkout">
+    <label for="workoutname">Workout Name: </label>
+    <select id="workoutname" formControlName="name">
+      <option value="default">----</option>
+      <option *ngFor="let workout of returnWorkouts">{{workout}}</option>
+    </select>
+  </div>
+  <div class="addWorkout">
+    <label for="weight">Weight: </label>
+    <input type="text" formControlName="weight">
+  </div>
+  <div class="addWorkout">
+    <label for="reps">Reps: </label>
+    <input type="text" formControlName="reps">
+  </div>
+  <div class="addWorkout">
+    <label for="sets">Sets: </label>
+    <input type="text" formControlName="sets">
+  </div>
+
+  <div class="addWorkout">
+    <label for="res">Resistance Type: </label>
+    <select id="res" formControlName="res">
+      <option value="default">----</option>
+      <option *ngFor="let resistance of resistanceTypes">{{resistance}}</option>
+    </select>
+  </div>
+
+  <button>Submit</button>
+</form>

@@ -1,6 +1,19 @@
 import psycopg2
+import os
+
+import logzero
+from logzero import logger
+
+# Setup Logging
+logDir = os.path.join(os.getcwd(), "Logs")
+if not os.path.isdir(logDir):
+    os.mkdir(logDir)
+
+logFile = os.path.join(logDir, "workout.log")
+logzero.logfile(logFile, maxBytes=1000000, backupCount=3)
 
 
+# API Classes
 
 def getCurConn():
     postgresHost = "127.0.0.1"
@@ -20,7 +33,7 @@ def getCurConn():
 def getDistinct(colName, tableName):
     cur, conn = getCurConn()
     try:
-        cur.execute("select distinct \"" + colName + "\" from " + tableName)
+        cur.execute("select distinct \"" + colName + "\" from " + tableName + " order by " + colName)
         result = cur.fetchall()
         listOfVals = [i[0] for i in result]
         cur.close()
@@ -48,7 +61,7 @@ def queryDB(tableName):
 def queryDBWhere(tableName, colName, workoutName):
     cur, conn = getCurConn()
     try:
-        cur.execute("select * from " + tableName + " where \"" + colName + "\"=%s order by 2", [workoutName])
+        cur.execute("select * from " + tableName + " where \"" + colName + "\"=%s order by 2 desc", [workoutName])
         colnames = [desc[0] for desc in cur.description]
         result = cur.fetchall()
         listOfResults = []
@@ -87,3 +100,50 @@ def queryDBWhereMultiple(queryStatement, listOfVals):
     cur.execute("ROLLBACK")
     conn.commit()
     return "Error"
+
+
+def getLastWorkoutID():
+  cur, conn = getCurConn()
+  try:
+    cur.execute("select workout_id from workouts order by workout_id desc")
+    result = cur.fetchall()
+    workout_id = result[0][0]
+    print(workout_id)
+    return workout_id
+
+
+  except (Exception, psycopg2.DatabaseError) as error:
+    print(error)
+    cur.execute("ROLLBACK")
+    conn.commit()
+    return "Error"
+
+
+def insertDataintoDB(query, vals):
+    '''
+    Inserts data into the PostgreSQL Database with the given insert query and values
+
+    :param query: Insert query statement
+    :type query: str
+    :param vals: List of values to be inserted
+    :type vals: list
+    :return: Return "Error" if issues inserting data into database, otherwise returns "True"
+    :rtype: str
+    '''
+    print(query)
+    print(vals)
+    cur, conn = getCurConn()
+    if cur == "Error":
+        return "Error"
+    else:
+        try:
+            cur.execute(query, vals)
+            conn.commit()
+            cur.close()
+            conn.close()
+            return "True"
+        except (Exception, psycopg2.DatabaseError) as error:
+            print("Error: %s" % error)
+            conn.rollback()
+            cur.close()
+            return "Error"
