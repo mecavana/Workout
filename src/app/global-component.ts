@@ -1,3 +1,3 @@
 export class GlobalComponent {
-  public static ipAddr: string = "127.0.0.1";
+  public static ipAddr: string = "192.168.1.224";
 }

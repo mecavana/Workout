@@ -9,8 +9,9 @@ import { GlobalComponent } from '.././global-component';
 })
 export class ResistanceComponent implements OnInit {
   ipAddr = GlobalComponent.ipAddr;
-  selectedResistance = '';
+  selected = '';
   selectedWorkout = '';
+  selectedResistance = '';
   resistanceTypes: any[];
   returnWorkoutsByResistance: any[] = [];
   returnHistoryByWorkout: any[] = [];
@@ -20,22 +21,21 @@ export class ResistanceComponent implements OnInit {
     this.resistanceTypes = ["Barbell", "Dumbbell", "Kettlebell", "Body Weight", "Bands", "Ankle Weights", "Pulley", "Other"]
   }
 
-  showWorkoutType(item: any) {
+  showWorkoutType(event: any) {
     this.returnWorkoutsByResistance = [];
-    this.selectedResistance = item;
-    console.log(this.selectedResistance);
-    this.httpClient.get('http://' + this.ipAddr + ':5000/getAllWorkoutsByResistance?Resistance=' + this.selectedResistance).subscribe(workoutData => {
+    this.selected = event.target.value;
+    console.log(this.selected);
+    this.httpClient.get('http://' + this.ipAddr + ':5000/getAllWorkoutsByResistance?Resistance=' + this.selected).subscribe(workoutData => {
       this.returnWorkoutsByResistance = workoutData as any[];
       console.log(this.returnWorkoutsByResistance);
     })
   }
 
-  getHistoryByBodyPart(workout: any, resistance: any) {
+  getHistoryByBodyPart(workout: any) {
     this.returnHistoryByWorkout = [];
-    this.selectedResistance = resistance;
-    this.selectedWorkout = workout;
+    this.selectedWorkout = workout.target.value;
     console.log(this.selectedWorkout);
-    this.httpClient.get('http://' + this.ipAddr + ':5000/getMyWorkoutsByResistanceAndPart?Workout%20Name=' + this.selectedWorkout + '&Resistance=' + this.selectedResistance).subscribe(workoutHistory => {
+    this.httpClient.get('http://' + this.ipAddr + ':5000/getMyWorkoutsByResistanceAndPart?Workout%20Name=' + this.selectedWorkout + '&Resistance=' + this.selected).subscribe(workoutHistory => {
       this.returnHistoryByWorkout = workoutHistory as any[];
       console.log(this.returnHistoryByWorkout);
     })

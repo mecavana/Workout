@@ -1,0 +1,37 @@
+input, textarea, select, button {
+  width: 200px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+fieldset {
+  position: relative;
+}
+
+legend {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+body {
+  font: 1.3rem sans-serif;
+  padding: 0.5em;
+  margin: 0;
+  background: #222;
+}
+
+form {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  padding: 1em;
+  box-sizing: border-box;
+  background: #FFF;
+  /* we create our grid */
+  display: table;
+  grid-gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+}

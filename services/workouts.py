@@ -73,7 +73,7 @@ def getAllUniqueWorkouts():
     uniqueresults = getDistinct("workout_type", "workouts")
     logger.info(str(uniqueresults))
     logger.info("/getAllUniqueWorkouts API was called - getting workouts now")
-    return str(uniqueresults)
+    return jsonify(uniqueresults)
 
 @app.route('/getAllWorkouts', methods=["GET"])
 def getAllWorkouts():
@@ -119,23 +119,31 @@ def getAllWorkoutsByResistance():
     return jsonify(workout)
 
 
-@app.route('/addNewWorkout', methods=["POST"])
+@app.route('/addNewWorkout', methods=["GET", "POST"])
 def postNewWorkout():
-    pass
-#need to have:
-    #date
-    #workout_type
-    #weight
-    #reps
-    #num_sets
-    #resistence_type
+    #logger.info("/addNewWorkout was called - adding workout now")
+    inputDate = request.args.get("Date")
+    print(inputDate)
+    workoutType = request.args.get("Workout")
+    weight = request.args.get("Weight")
+    reps = request.args.get("Reps")
+    num_sets = request.args.get("Sets")
+    resistence_type = request.args.get("Resistance Type")
+    workoutID = getLastWorkoutID()
+    print(workoutID)
+    newWorkoutID = int(workoutID) + 1
+    query = '''insert into workouts ("workout_id", "workout_date", "workout_type", "weight", "reps", "num_sets", "resistance_type")
+    VALUES (%s,%s,%s,%s,%s,%s,%s)'''
+    vals = [newWorkoutID, inputDate, workoutType, weight, reps, num_sets, resistence_type]
+    print(vals)
+    results = insertDataintoDB(query, vals)
+    print(results)
 
-
-
+    return jsonify(results)
 # Run Startup Tasks
 #startUpTasks()
 # Run Flask application
-app.run(host="0.0.0.0", port=5000, threaded=True)
+app.run(host="192.168.1.224", port=5000, threaded=True)
 CORS(app)
 # To start server in production mode, simply comment the line above and uncomment the two lines below
 
