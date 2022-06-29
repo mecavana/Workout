@@ -1,6 +1,7 @@
-<h2>  Workout History:</h2>
 
-<div class="table-wrapper">
+
+<div *ngIf="event">
+  <h2>  Workout History for {{curUser}}:</h2>
   <table class="fl-table">
     <thead>
       <tr>

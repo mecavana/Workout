@@ -27,10 +27,11 @@ logzero.logfile(logFile, maxBytes=1000000, backupCount=3)
 @app.route('/getMyWorkoutsByName', methods=["GET"])
 def getMyWorkoutsByName():
     workoutName = request.args.get('Workout Name')
-    uniqueresults = getDistinct("workout_type", "workouts")
-    logger.info(str(uniqueresults))
+    user = request.args.get('User')
     logger.info("/workouts API was called - getting workouts now")
-    results = queryDBWhere("workouts", "workout_type", workoutName)
+    queryStatement = '''select * from workouts where "workout_type"=%s and "user"=%s order by 2 desc'''
+    listOfVals = [workoutName, user]
+    results = queryDBWhereMultiple(queryStatement, listOfVals)
     formattedResults = []
     for i in results:
         singleResult = []
@@ -50,8 +51,9 @@ def getMyWorkoutsByResistanceAndPart():
     logger.info("/getMyWorkoutsByResistanceAndPart API was called - getting workouts now")
     workoutName = request.args.get('Workout Name')
     resistance = request.args.get('Resistance')
-    queryStatement = '''select * from workouts where "workout_type"=%s and "resistance_type"=%s'''
-    listOfVals = [workoutName, resistance]
+    user = request.args.get('User')
+    queryStatement = '''select * from workouts where "workout_type"=%s and "resistance_type"=%s and "user"=%s order by 2 desc'''
+    listOfVals = [workoutName, resistance, user]
     result = queryDBWhereMultiple(queryStatement, listOfVals)
     print(result)
     formattedResults = []
@@ -95,9 +97,32 @@ def getAllWorkouts():
     return jsonify(formattedResults)
 
 
+@app.route('/getAllWorkoutsByUser', methods=["GET"])
+def getAllWorkoutsByUser():
+    user = request.args.get('User')
+    logger.info("/getAllWorkoutsByUser API was called - getting workouts now")
+    queryStatement = '''select * from workouts where "user"=%s order by 2 desc'''
+    listOfVals = [user]
+    result = queryDBWhereMultiple(queryStatement, listOfVals)
+    print(result)
+    formattedResults = []
+    for i in result:
+        singleResult = []
+        date = i[1].strftime("%m/%d/%Y")
+        singleResult.append(date)
+        singleResult.append(i[2])
+        singleResult.append(i[3])
+        singleResult.append(i[4])
+        singleResult.append(i[5])
+        singleResult.append(i[6])
+        formattedResults.append(singleResult)
+    return jsonify(formattedResults)
+
+
 @app.route('/getAllWorkoutsByBodyPart', methods=["GET"])
 def getAllWorkoutsByBodyPart():
     bodyPart = request.args.get('Body Part')
+    user = request.args.get('User')
     logger.info(str(bodyPart))
     logger.info("/getAllWorkoutsByBodyPart API was called - getting workouts now")
     results = queryDBWhere("Workout_BodyPart", "bodypart_type", bodyPart)
@@ -129,12 +154,13 @@ def postNewWorkout():
     reps = request.args.get("Reps")
     num_sets = request.args.get("Sets")
     resistence_type = request.args.get("Resistance Type")
+    user = request.args.get("User")
     workoutID = getLastWorkoutID()
     print(workoutID)
     newWorkoutID = int(workoutID) + 1
-    query = '''insert into workouts ("workout_id", "workout_date", "workout_type", "weight", "reps", "num_sets", "resistance_type")
-    VALUES (%s,%s,%s,%s,%s,%s,%s)'''
-    vals = [newWorkoutID, inputDate, workoutType, weight, reps, num_sets, resistence_type]
+    query = '''insert into workouts ("workout_id", "workout_date", "workout_type", "weight", "reps", "num_sets", "resistance_type", "user")
+    VALUES (%s,%s,%s,%s,%s,%s,%s,%s)'''
+    vals = [newWorkoutID, inputDate, workoutType, weight, reps, num_sets, resistence_type, user]
     print(vals)
     results = insertDataintoDB(query, vals)
     print(results)

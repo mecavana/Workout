@@ -10,6 +10,9 @@ import { BodyPartsComponent } from './body-parts/body-parts.component';
 import { ResistanceComponent } from './resistance/resistance.component';
 import { WorkouthistoryComponent } from './workouthistory/workouthistory.component';
 import { AddWorkoutComponent } from './add-workout/add-workout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +20,17 @@ import { AddWorkoutComponent } from './add-workout/add-workout.component';
     BodyPartsComponent,
     ResistanceComponent,
     WorkouthistoryComponent,
-    AddWorkoutComponent
+    AddWorkoutComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
