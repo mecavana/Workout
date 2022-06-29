@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GlobalComponent } from '.././global-component';
 
@@ -7,13 +7,16 @@ import { GlobalComponent } from '.././global-component';
   templateUrl: './body-parts.component.html',
   styleUrls: ['./body-parts.component.css']
 })
-export class BodyPartsComponent implements OnInit {
+export class BodyPartsComponent implements OnInit, OnChanges {
   ipAddr = GlobalComponent.ipAddr;
+  @Input() event!: Event;
+  curUser = '';
   selectedBodyPart = '';
   selectedWorkout = '';
   bodyParts: any[];
   returnWorkoutsByBodyPart: any[] = [];
   returnHistoryByWorkout: any[] = [];
+  allUsers: string[] = [];
   workoutHistory = '';
   selected = '';
 
@@ -26,7 +29,7 @@ export class BodyPartsComponent implements OnInit {
     this.returnHistoryByWorkout = [];
     this.selectedWorkout = event.target.value;
     console.log(this.selectedWorkout);
-    this.httpClient.get('http://' + this.ipAddr + ':5000/getMyWorkoutsByName?Workout%20Name=' + this.selectedWorkout).subscribe(workoutHistory => {
+    this.httpClient.get('http://' + this.ipAddr + ':5000/getMyWorkoutsByName?Workout%20Name=' + this.selectedWorkout + '&User=' + this.curUser).subscribe(workoutHistory => {
       this.returnHistoryByWorkout = workoutHistory as any[];
       console.log(this.returnHistoryByWorkout);
     })
@@ -41,10 +44,26 @@ export class BodyPartsComponent implements OnInit {
     })
 
     }
-    
-
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    for (let propName in changes) {
+      let change = changes[propName];
+      let curVal = change.currentValue;
+      console.log('curval ' + curVal)
+      if (propName === 'event') {
+        this.allUsers.push(curVal);
+        this.curUser = curVal;
+      }
+      console.log("cur user " + this.curUser)
+
+    }
+    this.returnHistoryByWorkout = [];
+    this.returnWorkoutsByBodyPart = [];
+    this.selected = '';
+    this.selectedWorkout = '';
   }
 
 }

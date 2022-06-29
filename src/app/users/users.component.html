@@ -1,0 +1,8 @@
+<h2>Please select a user:</h2>
+<ul class="user">
+  <li *ngFor="let user of allUsers">
+    <button [class.selected]="user === userName" type="button" (click)="onClick(user)">
+      <span class="userName">{{user}}</span>
+    </button>
+  </li>
+</ul>
