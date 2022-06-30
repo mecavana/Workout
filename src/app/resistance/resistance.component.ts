@@ -10,6 +10,8 @@ import { GlobalComponent } from '.././global-component';
 })
 export class ResistanceComponent implements OnInit, OnChanges {
   ipAddr = GlobalComponent.ipAddr;
+  resistanceTypes = GlobalComponent.resistanceTypes;
+  bodyParts = GlobalComponent.bodyParts;
   @Input() event!: Event;
   selected = '';
   selectedWorkout = '';
@@ -20,7 +22,6 @@ export class ResistanceComponent implements OnInit, OnChanges {
   workoutHistory = '';
   curUser = '';
   allUsers: string[] = [];
-  resistanceTypes = ["Barbell", "Dumbbell", "Kettlebell", "Body Weight", "Bands", "Ankle Weights", "Pulley", "Other"];
 
 
   constructor(private httpClient: HttpClient) {

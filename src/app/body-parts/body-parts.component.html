@@ -1,3 +1,4 @@
+
 <div *ngIf="event">
   <h2 class="Body">  Choose A Body Part:</h2>
 
@@ -37,7 +38,7 @@
   <h2 class="Workouts" *ngIf="selectedWorkout">{{event}}'s Workout History for {{selectedWorkout}}:</h2>
   <table>
     <thead>
-      <tr *ngIf="selectedWorkout">
+      <tr class="col" *ngIf="selectedWorkout">
         <th style="text-align:left">ID</th>
         <th style="text-align: left">Date</th>
         <th style="text-align: left">Weight</th>
@@ -47,7 +48,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let history of returnHistoryByWorkout; let i = index;">
+      <tr class="row" *ngFor="let history of returnHistoryByWorkout; let i = index;">
         <td>{{i}}</td>
         <td>{{history[0]}}</td>
         <td>{{history[2]}}</td>
@@ -107,7 +108,7 @@
 <img class="low" src="../../assets/backsquat.png" *ngIf="selectedWorkout==='Back Squat'" />
 <img class="low" src="../../assets/anklehops.jpg" *ngIf="selectedWorkout==='Ankle Hops'" />
 
-<img class="low" src="../../assets/squatswings.jpg" *ngIf="selectedWorkout==='Squat Swings'" />
+<img class="low" src="../../assets/squatswings.png" *ngIf="selectedWorkout==='Squat Swings'" />
 <img class="low" src="../../assets/romaniandeadlift.jpg" *ngIf="selectedWorkout==='Romanian Deadlift'" />
 <img class="low" src="../../assets/deadlift.jpg" *ngIf="selectedWorkout==='Deadlift'" />
 <img class="low" src="../../assets/snatch_barbell.jpg" *ngIf="selectedWorkout==='Snatch'" />
@@ -115,7 +116,7 @@
 <img class="low" src="../../assets/reversechestfly.jpg" *ngIf="selectedWorkout==='Reverse Chest Flies'" />
 <img class="low" src="../../assets/pushups.jpg" *ngIf="selectedWorkout==='Pushups'" />
 <img class="low" src="../../assets/elevatedpushups.jpg" *ngIf="selectedWorkout==='Elevated Pushups'" />
-<img class="low" src="../../assets/eleveatedchestpress.jpg" *ngIf="selectedWorkout==='Elevated Chest Press'" />
+<img class="low" src="../../assets/eleveatedchestpress.jpg" *ngIf="selectedWorkout==='Inclined Chest Press'" />
 <img class="low" src="../../assets/declinedbenchpress.jpg" *ngIf="selectedWorkout==='Declined Chest Press'" />
 <img class="low" src="../../assets/benchpress.jpg" *ngIf="selectedWorkout==='Chest Press'" />
 <img class="low" src="../../assets/chestflies.png" *ngIf="selectedWorkout==='Chest Flies'" />
@@ -137,6 +138,7 @@
 <img class="low" src="../../assets/sideplank.jpeg" *ngIf="selectedWorkout==='Side Plank'" />
 <img class="low" src="../../assets/russiantwist.jpg" *ngIf="selectedWorkout==='Russian Twist'" />
 <img class="low" src="../../assets/plank.png" *ngIf="selectedWorkout==='Plank'" />
+<img class="low" src="../../assets/burpees.png" *ngIf="selectedWorkout==='Burpees'" />
 <img class="low" src="../../assets/mountainclimber.png" *ngIf="selectedWorkout==='Mountain Climbers'" />
 <img class="low" src="../../assets/kneeraises.jpg" *ngIf="selectedWorkout==='Knee Raises'" />
 <img class="low" src="../../assets/flutterkicks.jpg" *ngIf="selectedWorkout==='Flutter Kicks'" />

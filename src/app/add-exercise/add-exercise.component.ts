@@ -12,8 +12,8 @@ import { NgMultiSelectDropDownModule, IDropdownSettings  } from 'ng-multiselect-
 export class AddExerciseComponent implements OnInit {
   @Input() event!: Event;
   ipAddr = GlobalComponent.ipAddr;
-  resistanceTypes = ["Barbell", "Dumbbell", "Kettlebell", "Body Weight", "Bands", "Ankle Weights", "Pulley", "Other"];
-  bodyParts = ["Back", "Biceps", "Chest", "Core", "Forearms", "Legs", "Shoulders", "Triceps", "Whole Body"];
+  resistanceTypes = GlobalComponent.resistanceTypes;
+  bodyParts = GlobalComponent.bodyParts;
   workoutName = '';
   bodyPart = '';
   resistaneSelected = '';
@@ -36,6 +36,7 @@ export class AddExerciseComponent implements OnInit {
       this.addWorkoutData = data as JSON;
     })
     alert("Workout added!");
+    
     console.log(JSON.stringify(this.addWorkoutData));
   }
 

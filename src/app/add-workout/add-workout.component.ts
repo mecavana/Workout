@@ -18,7 +18,8 @@ export class AddWorkoutComponent implements OnInit, OnChanges {
   sets = '';
   restype = '';
   addWorkoutData = JSON;
-  resistanceTypes = ["Barbell", "Dumbbell", "Kettlebell", "Body Weight", "Bands", "Ankle Weights", "Pulley", "Other"];
+  resistanceTypes = GlobalComponent.resistanceTypes;
+  bodyParts = GlobalComponent.bodyParts;
   returnWorkouts: any[] = [];
   curUser = '';
   allUsers: string[] = [];

@@ -1,3 +1,66 @@
 table {
   width: 30%;
+  position: relative;
+  left: 80px;
+  top: -100px;
+  border-collapse: collapse;
+  border: solid;
+}
+
+tr:first-child {
+  border-top: solid;
+}
+
+tr:last-child {
+  border-bottom: solid;
+}
+
+
+.col {
+  border: 1px solid black;
+}
+.row {
+  border: 1px solid black;
+}
+
+tr, th, td {
+  border: solid;
+  border-width: 1px 0;
+  border: solid;
+  border-left: 1px solid black;
+}
+
+img.low {
+  position: absolute;
+  top: 25%;
+  left: 70%;
+  width: 30%;
+  max-width: 50%;
+}
+
+img.high {
+  float: left;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  max-width: 50%;
+}
+
+
+h2.Workouts {
+  position: relative;
+  left: 80px;
+  top: -100px;
+}
+
+h2.Resistance {
+  position: relative;
+  left: 0px;
+}
+
+
+select.Workouts {
+  position: relative;
+  left: 80px;
+  top: -100px;
 }

@@ -2,6 +2,7 @@
   Welcome to {{ title }}
 </h1>
 <div class="tab">
+  <button class="tablinks" (click)="setTab('add-exercise')">Add New Exercise</button>
   <button class="tablinks" (click)="setTab('add-workout')">Add Workout</button>
   <button class="tablinks" (click)="setTab('workout-history')">Workout History </button>
   <button class="tablinks" (click)="setTab('body-part')">Workouts by Body Part</button>
@@ -13,3 +14,4 @@
 <app-workouthistory *ngIf="router.url==='/workout-history'"[event]="clickedEvent"></app-workouthistory>
 <app-body-parts *ngIf="router.url==='/body-part'"[event]="clickedEvent"></app-body-parts>
 <app-add-workout *ngIf="router.url==='/add-workout'" [event]="clickedEvent"></app-add-workout>
+<app-add-exercise *ngIf="router.url==='/add-exercise'" [event]="clickedEvent"></app-add-exercise>
