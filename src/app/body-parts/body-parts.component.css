@@ -1,4 +1,40 @@
 table {
+  width: 40%;
+  position: relative;
+  left: 120px;
+  top: -100px;
+}
+
+img.low {
+  position: absolute;
+  top: 25%;
+  left: 70%;
   width: 30%;
 }
 
+img.high {
+  float: left;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+
+h2.Workouts {
+  position: relative;
+  left: 120px;
+  top: -100px;
+}
+
+h2.Body {
+  position: relative;
+  left: 0px;
+
+}
+
+
+select.Workouts {
+  position: relative;
+  left: 120px;
+  top: -100px;
+}
