@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AppComponent {
   title = GlobalComponent.title;
   ipAddr = GlobalComponent.ipAddr;
-  links = ['add-workout', 'workout-history', 'body-part', 'resistance'];
+  links = ['add-workout', 'workout-history', 'body-part', 'resistance', 'add-exercise'];
   link = '';
   activeLink = '';
 

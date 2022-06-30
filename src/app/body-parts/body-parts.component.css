@@ -1,15 +1,43 @@
 table {
-  width: 40%;
+  width: 30%;
   position: relative;
-  left: 120px;
+  left: 80px;
   top: -100px;
+  border-collapse: collapse;
+  border: solid;
+  max-width: 50%;
 }
 
+
+tr:first-child {
+  border-top: solid;
+}
+
+tr:last-child {
+  border-bottom: solid;
+}
+
+
+.col {
+  border: 1px solid black;
+}
+
+.row {
+  border: 1px solid black;
+}
+
+tr, th, td {
+  border: solid;
+  border-width: 1px 0;
+  border: solid;
+  border-left: 1px solid black;
+}
 img.low {
   position: absolute;
   top: 25%;
   left: 70%;
   width: 30%;
+  max-width: 100%;
 }
 
 img.high {
@@ -17,12 +45,13 @@ img.high {
   margin-left: auto;
   margin-right: auto;
   width: 30%;
+  max-width: 100%;
 }
 
 
 h2.Workouts {
   position: relative;
-  left: 120px;
+  left: 80px;
   top: -100px;
 }
 
@@ -35,6 +64,6 @@ h2.Body {
 
 select.Workouts {
   position: relative;
-  left: 120px;
+  left: 80px;
   top: -100px;
 }

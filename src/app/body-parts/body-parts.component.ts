@@ -9,11 +9,12 @@ import { GlobalComponent } from '.././global-component';
 })
 export class BodyPartsComponent implements OnInit, OnChanges {
   ipAddr = GlobalComponent.ipAddr;
+  resistanceTypes = GlobalComponent.resistanceTypes;
+  bodyParts = GlobalComponent.bodyParts;
   @Input() event!: Event;
   curUser = '';
   selectedBodyPart = '';
   selectedWorkout = '';
-  bodyParts: any[];
   returnWorkoutsByBodyPart: any[] = [];
   returnHistoryByWorkout: any[] = [];
   allUsers: string[] = [];
@@ -21,7 +22,6 @@ export class BodyPartsComponent implements OnInit, OnChanges {
   selected = '';
 
   constructor(private httpClient: HttpClient) {
-    this.bodyParts = ["Back", "Biceps", "Chest", "Core", "Forearms", "Legs", "Shoulders", "Triceps", "Whole Body"]
   }
 
 

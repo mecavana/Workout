@@ -1,15 +1,35 @@
 <div *ngIf="event">
-  <h2>  Choose a Resistance:</h2>
+  <h2 class="Resistance">  Choose a Resistance:</h2>
   <select *ngIf="event" #cricket (change)="showWorkoutType($event)">
     <option value="default" *ngIf="event">----</option>
     <option *ngFor="let resistance of resistanceTypes" [value]="resistance">
-      {{resistance}} 
+      {{resistance}}
     </option>
   </select>
 
   <br />
-  <h2 *ngIf="selected">Workouts for {{selected}}:</h2>
-  <select *ngIf="selected" #t (change)="getHistoryByBodyPart($event)">
+  <br />
+  <img class="high" src="../../assets/barbell.jpg" *ngIf="selected==='Barbell'" />
+  <img class="high" src="../../assets/dumbbell.jpg" *ngIf="selected==='Dumbbell'" />
+  <img class="high" src="../../assets/kettlebell.jpg" *ngIf="selected==='Kettlebell'" />
+  <img class="high" src="../../assets/resistancebands.jpg" *ngIf="selected==='Bands'" />
+  <img class="high" src="../../assets/ankleweights.jpg" *ngIf="selected==='Ankle Weights'" />
+  <img class="high" src="../../assets/bodyweight.jpg" *ngIf="selected==='Body Weight'" />
+  <img class="high" src="../../assets/pully.jpg" *ngIf="selected==='Cable'" />
+  <img class="high" src="../../assets/plated.png" *ngIf="selected==='Plate'" />
+  <img class="high" src="../../assets/slamball.jpg" *ngIf="selected==='Slam Ball'" />
+  <img class="high" src="../../assets/medicineball.jpg" *ngIf="selected==='Medicine Ball'" />
+  <img class="high" src="../../assets/ropes.jpg" *ngIf="selected==='Ropes'" />
+  <img class="high" src="../../assets/low-row-43122676__resized.jpg" *ngIf="selected==='TRX'" />
+  <img class="high" src="../../assets/sled.jpg" *ngIf="selected==='Sled'" />
+  <img class="high" src="../../assets/slosh.jpg" *ngIf="selected==='Slosh Pipe'" />
+  <img class="high" src="../../assets/machine.jpg" *ngIf="selected==='Machine'" />
+  <img class="high" src="../../assets/other.jpg" *ngIf="selected==='Other'" />
+  <br />
+
+  <br />
+  <h2 class="Workouts" *ngIf="selected">Workouts for {{selected}}:</h2>
+  <select class="Workouts" *ngIf="selected" #t (change)="getHistoryByBodyPart($event)">
     <option value="default" *ngIf="selected">----</option>
     <option *ngFor="let workout of returnWorkoutsByResistance" [value]="workout">
       {{workout}}
@@ -18,7 +38,7 @@
 
 
 
-  <h2 *ngIf="selectedWorkout">{{event}}'s Workout History for {{selectedWorkout}} with {{selected}}:</h2>
+  <h2 class="Workouts" *ngIf="selectedWorkout">{{event}}'s Workout History for {{selectedWorkout}} with {{selected}}:</h2>
   <table>
     <thead>
       <tr *ngIf="selectedWorkout">
@@ -46,3 +66,145 @@
 
 
 </div>
+
+
+<br />
+
+<img class="low" src="../../assets/pullup.jpg" *ngIf="selectedWorkout==='Pullups'" />
+<img class="low" src="../../assets/chinup.jpg" *ngIf="selectedWorkout==='Chinups'" />
+<img class="low" src="../../assets/uprightrow_barbell.jpg" *ngIf="selectedWorkout==='Upright Row'&& selected==='Barbell'" />
+<img class="low" src="../../assets/uprightrow_dumbbell.jpg" *ngIf="selectedWorkout==='Upright Row' && selected==='Dumbbell'" />
+
+<img class="low" src="../../assets/tbarrow.jpg" *ngIf="selectedWorkout==='T-Bar Row'" />
+<img class="low" src="../../assets/seated_goodmorning.png" *ngIf="selectedWorkout==='Seated Good Morning'" />
+<img class="low" src="../../assets/renegade_row.jpg" *ngIf="selectedWorkout==='Renegade Row'" />
+<img class="low" src="../../assets/landmine_row.jpg" *ngIf="selectedWorkout==='Landmine Row'" />
+<img class="low" src="../../assets/goodmorning_barbell.jpg" *ngIf="selectedWorkout==='Good Morning' && selected==='Barbell'" />
+<img class="low" src="../../assets/image_iphone.jpg" *ngIf="selectedWorkout==='Good Morning' && selected==='Dumbbell'" />
+
+<img class="low" src="../../assets/cactusarms.png" *ngIf="selectedWorkout==='Cactus Arm'" />
+<img class="low" src="../../assets/bent_over_row_barbell.png" *ngIf="selectedWorkout==='Bent Over Row'" />
+<img class="low" src="../../assets/latpulldown.png" *ngIf="selectedWorkout==='Lateral Pull Down'" />
+
+
+<img class="low" src="../../assets/reverseBicepCurl_barbell.jpg" *ngIf="selectedWorkout==='Reverse Bicep Curl' && selected==='Barbell'" />
+<img class="low" src="../../assets/dumbbell-reverse-curl-750x474.jpg" *ngIf="selectedWorkout==='Reverse Bicep Curl' && selected==='Dumbbell'" />
+
+<img class="low" src="../../assets/hammercurl.jpg" *ngIf="selectedWorkout==='Hammer Curl'" />
+<img class="low" src="../../assets/concentrationcurl.jpg" *ngIf="selectedWorkout==='Concentration Curl'" />
+<img class="low" src="../../assets/bicepcurl.jpg" *ngIf="selectedWorkout==='Bicep Curl' && selected==='Dumbbell'" />
+<img class="low" src="../../assets/barbell-curl-750x474.jpg" *ngIf="selectedWorkout==='Bicep Curl' && selected==='Barbell'" />
+
+<img class="low" src="../../assets/arnoldpress.jpg" *ngIf="selectedWorkout==='Arnold Press'" />
+
+
+
+<img class="low" src="../../assets/hamstringcurl.png" *ngIf="selectedWorkout==='Hamstring Curl'" />
+<img class="low" src="../../assets/wallsit.jpg" *ngIf="selectedWorkout==='Wall Sits' && selected==='Body Weight'" />
+<img class="low" src="../../assets/wallsit_dumbbell.jpg" *ngIf="selectedWorkout==='Wall Sits' && selected==='Dumbbell'" />
+<img class="low" src="../../assets/wallsit_plate.jpg" *ngIf="selectedWorkout==='Wall Sits' && selected==='Other'" />
+
+<img class="low" src="../../assets/splitsquat.jpg" *ngIf="selectedWorkout==='Split Squat'  && selected==='Body Weight'" />
+<img class="low" src="../../assets/splitsquat_barbell.jpg" *ngIf="selectedWorkout==='Split Squat' && selected==='Barbell'" />
+<img class="low" src="../../assets/splitsquat_dumbbell.jpg" *ngIf="selectedWorkout==='Split Squat' && selected==='Dumbbell'" />
+
+
+<img class="low" src="../../assets/skaterjumps.png" *ngIf="selectedWorkout==='Skater Jumps' && selected==='Body Weight'" />
+<img class="low" src="../../assets/blog-fitlife-042815-6.jpg" *ngIf="selectedWorkout==='Skater Jumps' && selected==='Dumbbell'" />
+
+
+<img class="low" src="../../assets/singlelegdeadlift.jpg" *ngIf="selectedWorkout==='Single Leg Deadlift' && selected==='Dumbbell'" />
+<img class="low" src="../../assets/singlelegdeadlift_barbell.jpg" *ngIf="selectedWorkout==='Single Leg Deadlift' && selected==='Barbell'" />
+<img class="low" src="../../assets/sidesteps.png" *ngIf="selectedWorkout==='Side Steps'" />
+<img class="low" src="../../assets/sidelungs.jpg" *ngIf="selectedWorkout==='Side Lunges' && selected==='Barbell'" />
+<img class="low" src="../../assets/sidelungs_dumbbell.jpg" *ngIf="selectedWorkout==='Side Lunges' && selected==='Dumbbell'" />
+<img class="low" src="../../assets/side-lunge-exercise-illustration.jpg" *ngIf="selectedWorkout==='Side Lunges' && selected==='Body Weight'" />
+
+<img class="low" src="../../assets/reverselunge.jpg" *ngIf="selectedWorkout==='Reverse Lunge' && selected==='Dumbbell'" />
+<img class="low" src="../../assets/revlunge_barbell.jpg" *ngIf="selectedWorkout==='Reverse Lunge' && selected==='Barbell'" />
+
+<img class="low" src="../../assets/reversehypers.png" *ngIf="selectedWorkout==='Reverse Hyperextensions' && selected==='Body Weight'" />
+<img class="low" src="../../assets/hqdefault.jpg" *ngIf="selectedWorkout==='Reverse Hyperextensions' && selected==='Dumbbell'" />
+
+<img class="low" src="../../assets/jumpsquat.png" *ngIf="selectedWorkout==='Jump Squat' && selected==='Body Weight'" />
+<img class="low" src="../../assets/jumpsquat_barbell.jpg" *ngIf="selectedWorkout==='Jump Squat' && selected==='Barbell'" />
+<img class="low" src="../../assets/dumbbell-jumping-squat.jpg" *ngIf="selectedWorkout==='Jump Squat' && selected==='Dumbbell'" />
+
+<img class="low" src="../../assets/hipthrust.png" *ngIf="selectedWorkout==='Hip Thrust'" />
+<img class="low" src="../../assets/hipabduction.jpg" *ngIf="selectedWorkout==='Hip Abduction'" />
+<img class="low" src="../../assets/glutebridge.png" *ngIf="selectedWorkout==='Glute Bridge'" />
+<img class="low" src="../../assets/gobletsquat.jpg" *ngIf="selectedWorkout==='Goblet Squat'" />
+<img class="low" src="../../assets/frontsquat.jpg" *ngIf="selectedWorkout==='Front Squat' && selected==='Barbell'" />
+<img class="low" src="../../assets/Dumbbell-front-squat.png" *ngIf="selectedWorkout==='Front Squat' && selected==='Dumbbell'" />
+
+
+<img class="low" src="../../assets/forwardlunge.jpg" *ngIf="selectedWorkout==='Front Lunge' && selected==='Dumbbell'" />
+<img class="low" src="../../assets/barbell-reverse-lunge-1000x1000.jpg" *ngIf="selectedWorkout==='Front Lunge' && selected==='Barbell'" />
+
+<img class="low" src="../../assets/firehydrant.jpg" *ngIf="selectedWorkout==='Fire Hydrant'" />
+<img class="low" src="../../assets/donkeykick.jpg" *ngIf="selectedWorkout==='Donkey Kick'" />
+<img class="low" src="../../assets/depthjump.jpg" *ngIf="selectedWorkout==='Depth Jumps'" />
+<img class="low" src="../../assets/calfraises.jpg" *ngIf="selectedWorkout==='Calf Raises' && selected==='Dumbbell'" />
+<img class="low" src="../../assets/dumbbell-standing-calf-raise.jpg" *ngIf="selectedWorkout==='Calf Raises' && selected==='Barbell'" />
+
+<img class="low" src="../../assets/boxsquat.jpg" *ngIf="selectedWorkout==='Box Squat'" />
+<img class="low" src="../../assets/backsquat.png" *ngIf="selectedWorkout==='Back Squat'" />
+<img class="low" src="../../assets/anklehops.jpg" *ngIf="selectedWorkout==='Ankle Hops'" />
+
+<img class="low" src="../../assets/squatswings.png" *ngIf="selectedWorkout==='Squat Swings' && selected==='Kettlebell'" />
+<img class="low" src="../../assets/squatswings_dumbbell.jpg" *ngIf="selectedWorkout==='Squat Swings' && selected==='Dumbbell'" />
+
+<img class="low" src="../../assets/romaniandeadlift.jpg" *ngIf="selectedWorkout==='Romanian Deadlift' && selected==='Barbell'" />
+<img class="low" src="../../assets/dumbbell-romanian-deadlift.jpg" *ngIf="selectedWorkout==='Romanian Deadlift' && selected==='Dumbbell'" />
+
+<img class="low" src="../../assets/deadlift.jpg" *ngIf="selectedWorkout==='Deadlift'" />
+<img class="low" src="../../assets/snatch_barbell.jpg" *ngIf="selectedWorkout==='Snatch'" />
+
+<img class="low" src="../../assets/reversechestfly.jpg" *ngIf="selectedWorkout==='Reverse Chest Flies'" />
+<img class="low" src="../../assets/pushups.jpg" *ngIf="selectedWorkout==='Pushups'" />
+<img class="low" src="../../assets/elevatedpushups.jpg" *ngIf="selectedWorkout==='Elevated Pushups'" />
+<img class="low" src="../../assets/eleveatedchestpress.jpg" *ngIf="selectedWorkout==='Inclined Chest Press'" />
+<img class="low" src="../../assets/declinedbenchpress.jpg" *ngIf="selectedWorkout==='Declined Chest Press'" />
+<img class="low" src="../../assets/benchpress.jpg" *ngIf="selectedWorkout==='Chest Press'" />
+<img class="low" src="../../assets/chestflies.png" *ngIf="selectedWorkout==='Chest Flies'" />
+
+<img class="low" src="../../assets/militarypress.jpg" *ngIf="selectedWorkout==='Standing Military Press' && selected==='Barbell'" />
+<img class="low" src="../../assets/thumb_1468612740.png" *ngIf="selectedWorkout==='Standing Military Press' && selected==='Dumbbell'" />
+
+<img class="low" src="../../assets/shouldshurg.png" *ngIf="selectedWorkout==='Shoulder Shrugs' && selected==='Dumbbell'" />
+<img class="low" src="../../assets/barbellshrug.jpg" *ngIf="selectedWorkout==='Shoulder Shrugs' && selected==='Barbell'" />
+
+<img class="low" src="../../assets/shoulderpress.jpg" *ngIf="selectedWorkout==='Shoulder Press' && selected==='Barbell'" />
+<img class="low" src="../../assets/shoulderpress_dumbb.png" *ngIf="selectedWorkout==='Shoulder Press' && selected==='Dumbbell'" />
+
+<img class="low" src="../../assets/lateralraise.jpg" *ngIf="selectedWorkout==='Lateral Raises'" />
+<img class="low" src="../../assets/frontraise.jpg" *ngIf="selectedWorkout==='Front Raises' && selected==='Dumbbell'" />
+<img class="low" src="../../assets/barbell-front-raise.jpg" *ngIf="selectedWorkout==='Front Raises' && selected==='Barbell'" />
+
+
+
+<img class="low" src="../../assets/tricepkickback.jpg" *ngIf="selectedWorkout==='Tricep Kickback'" />
+<img class="low" src="../../assets/tricepextension.jpg" *ngIf="selectedWorkout==='Tricep Extension' && selected==='Dumbbell'" />
+<img class="low" src="../../assets/tricepextension_barbell.jpg" *ngIf="selectedWorkout==='Tricep Extension' && selected==='Barbell'" />
+<img class="low" src="../../assets/skullcrushers.jpg" *ngIf="selectedWorkout==='Skull Crushers' && selected==='Barbell'" />
+<img class="low" src="../../assets/dumbbell-lying-floor-skull-crusher.jpg" *ngIf="selectedWorkout==='Skull Crushers' && selected==='Dumbbell'" />
+
+
+<img class="low" src="../../assets/windshieldwipesrs.jpg" *ngIf="selectedWorkout==='Windshield Wipers'" />
+<img class="low" src="../../assets/vups.jpg" *ngIf="selectedWorkout==='V-Ups'" />
+<img class="low" src="../../assets/sideplank.jpeg" *ngIf="selectedWorkout==='Side Plank'" />
+<img class="low" src="../../assets/russiantwist.jpg" *ngIf="selectedWorkout==='Russian Twist' && selected==='Body Weight'" />
+<img class="low" src="../../assets/Russian-Twist_Exercise.jpg" *ngIf="selectedWorkout==='Russian Twist' && selected==='Dumbbell'" />
+
+<img class="low" src="../../assets/plank.png" *ngIf="selectedWorkout==='Plank'" />
+<img class="low" src="../../assets/mountainclimber.png" *ngIf="selectedWorkout==='Mountain Climbers'" />
+<img class="low" src="../../assets/kneeraises.jpg" *ngIf="selectedWorkout==='Knee Raises'" />
+<img class="low" src="../../assets/flutterkicks.jpg" *ngIf="selectedWorkout==='Flutter Kicks'" />
+<img class="low" src="../../assets/deadbug.png" *ngIf="selectedWorkout==='Dead Bug'" />
+<img class="low" src="../../assets/cyclecrunch.png" *ngIf="selectedWorkout==='Cycle Crunch'" />
+<img class="low" src="../../assets/crunch.png" *ngIf="selectedWorkout==='Crunches'" />
+<img class="low" src="../../assets/burpees.png" *ngIf="selectedWorkout==='Burpees'" />
+<img class="low" src="../../assets/abrollouts.jpg" *ngIf="selectedWorkout==='Ab Rollouts'" />
+<img class="low" src="../../assets/abcurl.jpg" *ngIf="selectedWorkout==='Ab Curl' && selected==='Other'" />
+<img class="low" src="../../assets/maxresdefault.jpg" *ngIf="selectedWorkout==='Ab Curl' && selected==='Body Weight'" />
+
