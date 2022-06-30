@@ -1,0 +1,27 @@
+
+<div *ngIf="event">
+  <h2>  Add New Workout</h2>
+  <form [formGroup]="addWorkoutForm" (ngSubmit)="onSubmit()">
+    <div class="addWorkout">
+      <label for="name">Workout Name: </label>
+      <input type="text" formControlName="name">
+    </div>
+    <div class="addWorkout">
+      <label for="bodypart">Body Part: </label>
+      <select id="bodypart" formControlName="bodypart">
+        <option value="default">----</option>
+        <option *ngFor="let bodyPart of bodyParts">{{bodyPart}}</option>
+      </select>
+    </div>
+
+    <div class="addWorkout">
+      <label for="resistance">Resistance Type: </label>
+      <select id="resistance" formControlName="resistance">
+        <option value="default">----</option>
+        <option *ngFor="let resistance of resistanceTypes">{{resistance}}</option>
+      </select>
+    </div>
+
+    <button>Submit</button>
+  </form>
+</div>

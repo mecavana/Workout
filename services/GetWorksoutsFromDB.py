@@ -57,6 +57,29 @@ def queryDB(tableName):
         conn.commit()
         return "Error"
 
+def queryDistinceDBWhere(tableName, colName, workoutName, orderBy, distinctCol):
+    cur, conn = getCurConn()
+    try:
+      cur.execute(
+        "select distinct(" + distinctCol + ") from " + tableName + " where \"" + colName + "\"=%s order by \"" +
+        orderBy + "\"", [workoutName])
+      colnames = [desc[0] for desc in cur.description]
+      result = cur.fetchall()
+      listOfResults = []
+      for i in result:
+        rowList = []
+        for j in range(len(colnames)):
+          rowList.append(i[j])
+        listOfResults.append(rowList)
+      return listOfResults
+
+
+    except (Exception, psycopg2.DatabaseError) as error:
+      logger.error(error)
+      cur.execute("ROLLBACK")
+      conn.commit()
+      return "Error"
+
 
 def queryDBWhere(tableName, colName, workoutName):
     cur, conn = getCurConn()
@@ -101,14 +124,12 @@ def queryDBWhereMultiple(queryStatement, listOfVals):
     conn.commit()
     return "Error"
 
-
-def getLastWorkoutID():
+def getLastID(colName, tableName):
   cur, conn = getCurConn()
   try:
-    cur.execute("select workout_id from workouts order by workout_id desc")
+    cur.execute("select " + colName + " from " + tableName + " order by " + colName + " desc")
     result = cur.fetchall()
     workout_id = result[0][0]
-    print(workout_id)
     return workout_id
 
 
@@ -130,8 +151,7 @@ def insertDataintoDB(query, vals):
     :return: Return "Error" if issues inserting data into database, otherwise returns "True"
     :rtype: str
     '''
-    print(query)
-    print(vals)
+
     cur, conn = getCurConn()
     if cur == "Error":
         return "Error"
