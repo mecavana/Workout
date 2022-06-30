@@ -1,0 +1,40 @@
+
+<div *ngIf="event">
+  <h2>  Get Workout by Date for {{curUser}}</h2>
+  <form [formGroup]="addWorkoutForm" (ngSubmit)="onSubmit()">
+    <div class="addWorkout">
+      <label for="date">Workout Date: </label>
+      <input type="date" formControlName="date">
+    </div>
+    <button>Submit</button>
+  </form>
+</div>
+
+<br />
+<div *ngIf="workoutDate">
+  <h2>  Workout History for {{curUser}}:</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">ID</th>
+        <th style="text-align: left">Date</th>
+        <th style="text-align: left">Exercise</th>
+        <th style="text-align: left">Weight</th>
+        <th style="text-align: left">Reps</th>
+        <th style="text-align: left">Sets</th>
+        <th style="text-align: left">Resistance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let history of returnWorkouts; let i = index;">
+        <td>{{i}}</td>
+        <td>{{history[0]}}</td>
+        <td>{{history[1]}}</td>
+        <td>{{history[2]}}</td>
+        <td>{{history[3]}}</td>
+        <td>{{history[4]}}</td>
+        <td>{{history[5]}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

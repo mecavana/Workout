@@ -7,6 +7,7 @@ import { WorkouthistoryComponent } from './workouthistory/workouthistory.compone
 import { AddWorkoutComponent } from './add-workout/add-workout.component';
 import { UsersComponent } from './users/users.component';
 import { AddExerciseComponent } from './add-exercise/add-exercise.component';
+import { WorkoutdateComponent } from './workoutdate/workoutdate.component';
 
 const routes: Routes = [
   { path: 'body-part', component: BodyPartsComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'workout-history', component: WorkouthistoryComponent },
   { path: 'add-workout', component: AddWorkoutComponent },
   { path: 'users', component: UsersComponent },
-  { path: 'add-exercise', component: AddExerciseComponent }
+  { path: 'add-exercise', component: AddExerciseComponent },
+  { path: 'workout-date', component: WorkoutdateComponent }
 
 ];
 

@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { UsersComponent } from './users/users.component';
 import { AddExerciseComponent } from './add-exercise/add-exercise.component';
+import { WorkoutdateComponent } from './workoutdate/workoutdate.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AddExerciseComponent } from './add-exercise/add-exercise.component';
     WorkouthistoryComponent,
     AddWorkoutComponent,
     UsersComponent,
-    AddExerciseComponent
+    AddExerciseComponent,
+    WorkoutdateComponent
   ],
   imports: [
     BrowserModule,

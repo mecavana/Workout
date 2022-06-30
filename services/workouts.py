@@ -144,6 +144,30 @@ def getAllWorkoutsByResistance():
     return jsonify(workout)
 
 
+@app.route('/getAllWorkoutsByDateUser', methods=["GET"])
+def getAllWorkoutsByDateUser():
+    workoutDate = request.args.get('Date')
+    user = request.args.get('User')
+    logger.info("/getAllWorkoutsByDateUser API was called - getting workouts now")
+    queryStatement = '''select * from workouts where "workout_date"=%s and "user"=%s'''
+    listOfVals = [workoutDate, user]
+    results = queryDBWhereMultiple(queryStatement, listOfVals)
+    formattedResults = []
+    for i in results:
+        singleResult = []
+        date = i[1].strftime("%m/%d/%Y")
+        singleResult.append(date)
+        singleResult.append(i[2])
+        singleResult.append(i[3])
+        singleResult.append(i[4])
+        singleResult.append(i[5])
+        singleResult.append(i[6])
+        formattedResults.append(singleResult)
+
+    return jsonify(formattedResults)
+
+
+
 @app.route('/addNewWorkout', methods=["GET", "POST"])
 def postNewWorkout():
     logger.info("/addNewWorkout was called - adding workout now")
