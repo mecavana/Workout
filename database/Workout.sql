@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS public.workouts
     reps character varying COLLATE pg_catalog."default",
     num_sets integer,
     resistance_type character varying COLLATE pg_catalog."default",
+	user character varying COLLATE pg_catalog."default",
     CONSTRAINT workouts_pkey PRIMARY KEY (workout_id)
 )
 
