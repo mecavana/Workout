@@ -64,6 +64,7 @@ export class BodyPartsComponent implements OnInit, OnChanges {
     this.returnWorkoutsByBodyPart = [];
     this.selected = '';
     this.selectedWorkout = '';
+    this.bodyParts = GlobalComponent.bodyParts;
   }
 
 }
